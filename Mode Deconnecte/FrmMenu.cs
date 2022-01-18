@@ -47,5 +47,10 @@ namespace Mode_Deconnecte
         {
 
         }
+
+        private void toolStripButton6_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
