@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace Mode_Deconnecte
@@ -25,7 +26,12 @@ namespace Mode_Deconnecte
 
         private void Form1_Load(object sender, EventArgs e)
         {
-                  cn.ConnectionString = @"data source=.\sqlexpress2008;initial catalog=cabinetMedecin;user id=sa;password=P@ssw0rd";
+
+
+            string cs = ConfigurationManager.ConnectionStrings["CabinetMedecinConnectionString"].ConnectionString;
+
+            cn.ConnectionString = cs;
+            
             // cn.ConnectionString = @"data source=.\sqlexpress2008;initial catalog=cabinetMedecin;integrated security=true";
 
             cn.Open();
@@ -40,9 +46,25 @@ namespace Mode_Deconnecte
             listBox1.DisplayMember = "nom";
             listBox1.ValueMember = "id";
             listBox1.DataSource = bs;
+            txtNom.DataBindings.Add("Text", bs, "nom");
+            txtPrenom.DataBindings.Add("Text", bs, "prenom");
 
 
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bs.MovePrevious();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bs.MoveNext();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            bs.Filter = "nom like '%" + txtRecherche.Text + "%'";
         }
     }
 }
