@@ -19,6 +19,9 @@ namespace Mode_Deconnecte
         DataSet ds = new DataSet();
         SqlDataAdapter da;
         BindingSource bs = new BindingSource();
+        SqlCommandBuilder cb;
+
+
         public FrmMedecin()
         {
             InitializeComponent();
@@ -39,6 +42,9 @@ namespace Mode_Deconnecte
             com.Connection = cn;
             com.CommandText = "select * from medecin";
             da = new SqlDataAdapter(com);
+            cb = new SqlCommandBuilder(da);
+
+
             da.Fill(ds, "Medecin");
             bs.DataSource = ds;
             bs.DataMember = "Medecin";
@@ -48,7 +54,9 @@ namespace Mode_Deconnecte
             listBox1.DataSource = bs;
             txtNom.DataBindings.Add("Text", bs, "nom");
             txtPrenom.DataBindings.Add("Text", bs, "prenom");
-
+            txtTel.DataBindings.Add("Text", bs, "telephone");
+            txtEmail.DataBindings.Add("Text", bs, "email");
+ 
 
         }
 
@@ -65,6 +73,18 @@ namespace Mode_Deconnecte
         private void button3_Click(object sender, EventArgs e)
         {
             bs.Filter = "nom like '%" + txtRecherche.Text + "%'";
+        }
+
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+            bs.AddNew();
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            bs.EndEdit();
+            da.Update(ds.Tables["Medecin"]);
+
         }
     }
 }

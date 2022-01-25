@@ -52,5 +52,10 @@ namespace Mode_Deconnecte
         {
             this.Close();
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            AfficherFenetre(new FrmConsultation());
+        }
     }
 }

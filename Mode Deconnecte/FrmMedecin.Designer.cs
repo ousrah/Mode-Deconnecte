@@ -38,6 +38,12 @@ namespace Mode_Deconnecte
             this.btnSuivant = new System.Windows.Forms.Button();
             this.txtRecherche = new System.Windows.Forms.TextBox();
             this.btnChercher = new System.Windows.Forms.Button();
+            this.btnAjouter = new System.Windows.Forms.Button();
+            this.btnValider = new System.Windows.Forms.Button();
+            this.txtTel = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBox1
@@ -53,7 +59,7 @@ namespace Mode_Deconnecte
             // Nom
             // 
             this.Nom.AutoSize = true;
-            this.Nom.Location = new System.Drawing.Point(439, 166);
+            this.Nom.Location = new System.Drawing.Point(437, 110);
             this.Nom.Name = "Nom";
             this.Nom.Size = new System.Drawing.Size(64, 25);
             this.Nom.TabIndex = 1;
@@ -62,7 +68,7 @@ namespace Mode_Deconnecte
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(439, 207);
+            this.label2.Location = new System.Drawing.Point(437, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 25);
             this.label2.TabIndex = 2;
@@ -70,14 +76,14 @@ namespace Mode_Deconnecte
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(540, 168);
+            this.txtNom.Location = new System.Drawing.Point(538, 112);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(253, 30);
             this.txtNom.TabIndex = 3;
             // 
             // txtPrenom
             // 
-            this.txtPrenom.Location = new System.Drawing.Point(540, 207);
+            this.txtPrenom.Location = new System.Drawing.Point(538, 151);
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(253, 30);
             this.txtPrenom.TabIndex = 4;
@@ -111,19 +117,77 @@ namespace Mode_Deconnecte
             // 
             // btnChercher
             // 
-            this.btnChercher.Location = new System.Drawing.Point(324, 54);
+            this.btnChercher.Location = new System.Drawing.Point(286, 54);
             this.btnChercher.Name = "btnChercher";
-            this.btnChercher.Size = new System.Drawing.Size(75, 30);
+            this.btnChercher.Size = new System.Drawing.Size(135, 39);
             this.btnChercher.TabIndex = 8;
             this.btnChercher.Text = "Chercher";
             this.btnChercher.UseVisualStyleBackColor = true;
             this.btnChercher.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnAjouter
+            // 
+            this.btnAjouter.Location = new System.Drawing.Point(482, 380);
+            this.btnAjouter.Name = "btnAjouter";
+            this.btnAjouter.Size = new System.Drawing.Size(135, 39);
+            this.btnAjouter.TabIndex = 9;
+            this.btnAjouter.Text = "Ajouter";
+            this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
+            // 
+            // btnValider
+            // 
+            this.btnValider.Location = new System.Drawing.Point(568, 443);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(135, 39);
+            this.btnValider.TabIndex = 10;
+            this.btnValider.Text = "Valider";
+            this.btnValider.UseVisualStyleBackColor = true;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            // 
+            // txtTel
+            // 
+            this.txtTel.Location = new System.Drawing.Point(538, 196);
+            this.txtTel.Name = "txtTel";
+            this.txtTel.Size = new System.Drawing.Size(253, 30);
+            this.txtTel.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(437, 196);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 25);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Téléphone :";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(538, 232);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(253, 30);
+            this.txtEmail.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(437, 232);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 25);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "email  :";
             // 
             // FrmMedecin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 493);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnValider);
+            this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.btnChercher);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.btnSuivant);
@@ -154,6 +218,12 @@ namespace Mode_Deconnecte
         private System.Windows.Forms.Button btnSuivant;
         private System.Windows.Forms.TextBox txtRecherche;
         private System.Windows.Forms.Button btnChercher;
+        private System.Windows.Forms.Button btnAjouter;
+        private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.TextBox txtTel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label3;
     }
 }
 
