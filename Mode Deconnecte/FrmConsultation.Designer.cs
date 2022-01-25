@@ -44,6 +44,7 @@ namespace Mode_Deconnecte
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
             this.btnAnnuler = new System.Windows.Forms.Button();
+            this.txtDC = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listBox1
@@ -51,7 +52,7 @@ namespace Mode_Deconnecte
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 22;
             this.listBox1.Location = new System.Drawing.Point(13, 137);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(338, 290);
             this.listBox1.TabIndex = 0;
@@ -103,14 +104,16 @@ namespace Mode_Deconnecte
             // 
             // dtpConsultation
             // 
+            this.dtpConsultation.CustomFormat = "yyyy MM dd";
             this.dtpConsultation.Location = new System.Drawing.Point(622, 147);
             this.dtpConsultation.Name = "dtpConsultation";
             this.dtpConsultation.Size = new System.Drawing.Size(405, 28);
             this.dtpConsultation.TabIndex = 14;
+            this.dtpConsultation.ValueChanged += new System.EventHandler(this.dtpConsultation_ValueChanged);
             // 
             // txtObservation
             // 
-            this.txtObservation.Location = new System.Drawing.Point(622, 221);
+            this.txtObservation.Location = new System.Drawing.Point(622, 216);
             this.txtObservation.Multiline = true;
             this.txtObservation.Name = "txtObservation";
             this.txtObservation.Size = new System.Drawing.Size(470, 206);
@@ -181,11 +184,21 @@ namespace Mode_Deconnecte
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
             // 
+            // txtDC
+            // 
+            this.txtDC.Location = new System.Drawing.Point(728, 298);
+            this.txtDC.Name = "txtDC";
+            this.txtDC.Size = new System.Drawing.Size(252, 28);
+            this.txtDC.TabIndex = 23;
+            this.txtDC.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // FrmConsultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 542);
+            this.Controls.Add(this.txtObservation);
+            this.Controls.Add(this.txtDC);
             this.Controls.Add(this.btnAnnuler);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.btnSupprimer);
@@ -193,7 +206,6 @@ namespace Mode_Deconnecte
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtObservation);
             this.Controls.Add(this.dtpConsultation);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -202,7 +214,7 @@ namespace Mode_Deconnecte
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.listBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmConsultation";
             this.Text = "FrmConsultation";
             this.Load += new System.EventHandler(this.FrmConsultation_Load);
@@ -228,5 +240,6 @@ namespace Mode_Deconnecte
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Button btnAnnuler;
+        private System.Windows.Forms.TextBox txtDC;
     }
 }

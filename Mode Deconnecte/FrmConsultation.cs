@@ -41,11 +41,11 @@ namespace Mode_Deconnecte
 
             cn.Open();
 
- //gestion des patients
+            //gestion des patients
             comP.Connection = cn;
             comP.CommandText = "select * from patient";
             daP = new SqlDataAdapter(comP);
- 
+
             daP.Fill(ds, "Patient");
             bsP.DataSource = ds;
             bsP.DataMember = "Patient";
@@ -54,21 +54,20 @@ namespace Mode_Deconnecte
             listBox1.ValueMember = "id";
             listBox1.DataSource = bsP;
 
-//gestion des consultations
+            //gestion des consultations
             comC.Connection = cn;
             comC.CommandText = "select * from consultation";
             daC = new SqlDataAdapter(comC);
             cb = new SqlCommandBuilder(daC);
             daC.Fill(ds, "Consultation");
-            //ajouter la relation
 
+            //ajouter la relation
             DataColumn idP_Patient = ds.Tables["patient"].Columns["id"];
             DataColumn idP_Consultation = ds.Tables["consultation"].Columns["idPatient"];
-
             DataRelation fk_consultation_patient = new DataRelation("fk_consultation_patient", idP_Patient, idP_Consultation);
             ds.Relations.Add(fk_consultation_patient);
 
-//afficher les consultations du patient selectionné
+            //afficher les consultations du patient selectionné
             bsC.DataSource = bsP;
             bsC.DataMember = "fk_consultation_patient";
 
@@ -76,7 +75,8 @@ namespace Mode_Deconnecte
             listBox2.ValueMember = "id";
             listBox2.DataSource = bsC;
 
-            dtpConsultation.DataBindings.Add("Value",bsC,"dateConsultation");
+            txtDC.DataBindings.Add("Text", bsC, "dateConsultation") ;
+        
             txtObservation.DataBindings.Add("Text", bsC, "observation");
 
 
@@ -93,13 +93,28 @@ namespace Mode_Deconnecte
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             bsC.AddNew();
-            listBox2.SelectedIndex = listBox2.Items.Count - 1;
+            txtDC.Text = DateTime.Now.ToString();
+      
         }
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            bsC.EndEdit();
+                    bsC.EndEdit();
             daC.Update(ds.Tables["Consultation"]);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try { 
+                dtpConsultation.Value = Convert.ToDateTime(txtDC.Text);
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void dtpConsultation_ValueChanged(object sender, EventArgs e)
+        {
+            txtDC.Text = dtpConsultation.Value.ToString();
         }
     }
 }
