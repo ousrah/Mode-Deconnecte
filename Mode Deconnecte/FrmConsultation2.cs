@@ -29,7 +29,7 @@ namespace Mode_Deconnecte
             comboBox1.ValueMember = "id";
             comboBox1.DataSource = bsPatient;
 
-            bsConsultation = db.RemplirListe("consultation");
+            bsConsultation = db.RemplirListeRelation("consultation",bsPatient,"id","idPatient");
             listBox1.DisplayMember = "dateConsultation";
             listBox1.ValueMember = "id";
             listBox1.DataSource = bsConsultation;

@@ -30,8 +30,8 @@ namespace Mode_Deconnecte
         public static void FermerConnection()
         {
             if (cn.State != ConnectionState.Closed)
-                          cn.Close();
-         
+                cn.Close();
+
         }
 
         public static BindingSource RemplirListe(string table)
@@ -40,18 +40,21 @@ namespace Mode_Deconnecte
         }
         public static BindingSource RemplirListe(string req, string table)
         {
-            if (cn.State != ConnectionState.Open)
-                OuvrirConnection();
+            OuvrirConnection();
 
             com.Connection = cn;
             com.CommandText = req;
             da.SelectCommand = com;
 
             if (ds.Tables.Contains(table))
+            {
+                ds.EnforceConstraints = false;
                 ds.Tables[table].Clear();
-            
+
+            }
+
             da.Fill(ds, table);
-            
+            ds.EnforceConstraints = true;
 
 
             BindingSource bs = new BindingSource();
@@ -60,6 +63,52 @@ namespace Mode_Deconnecte
 
             return bs;
         }
+
+        public static BindingSource RemplirListeRelation(string table, BindingSource bs, string pk, string fk)
+        {
+            return RemplirListeRelation("select * from " + table, table, bs, pk, fk);
+        }
+
+
+        public static BindingSource RemplirListeRelation(string req, string table, BindingSource bs, string pk, string fk)
+        {
+            OuvrirConnection();
+
+            com.Connection = cn;
+            com.CommandText = req;
+            da.SelectCommand = com;
+
+
+            if (ds.Tables.Contains(table))
+            {
+                ds.EnforceConstraints = false;
+                ds.Tables[table].Clear();
+            }
+
+            da.Fill(ds, table);
+            ds.EnforceConstraints = true;
+
+            string nomRelation = "fk_" + table + "_" + bs.DataMember;
+
+            if (!ds.Relations.Contains(nomRelation))
+            {
+                DataColumn colPK = ds.Tables[bs.DataMember].Columns[pk];
+                DataColumn colFK = ds.Tables[table].Columns[fk];
+                DataRelation rel = new DataRelation(nomRelation, colPK, colFK);
+                ds.Relations.Add(rel);
+            }
+
+
+
+
+            BindingSource newbs = new BindingSource();
+            newbs.DataSource = bs;
+            newbs.DataMember = nomRelation;
+
+            return newbs;
+        }
+
+
 
         public static void MiseAjour(string table)
         {
