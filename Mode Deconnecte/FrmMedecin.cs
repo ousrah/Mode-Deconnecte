@@ -14,7 +14,6 @@ namespace Mode_Deconnecte
 {
     public partial class FrmMedecin : Form
     {
-        SqlConnection cn = new SqlConnection();
         SqlCommand com = new SqlCommand();
         DataSet ds = new DataSet();
         SqlDataAdapter da;
@@ -31,15 +30,11 @@ namespace Mode_Deconnecte
         {
 
 
-            string cs = ConfigurationManager.ConnectionStrings["CabinetMedecinConnectionString"].ConnectionString;
-
-            cn.ConnectionString = cs;
-            
+            db.OuvrirConnection();    
             // cn.ConnectionString = @"data source=.\sqlexpress2008;initial catalog=cabinetMedecin;integrated security=true";
 
-            cn.Open();
-
-            com.Connection = cn;
+            
+            com.Connection = db.cn;
             com.CommandText = "select * from medecin";
             da = new SqlDataAdapter(com);
             cb = new SqlCommandBuilder(da);

@@ -13,7 +13,6 @@ namespace Mode_Deconnecte
 {
     public partial class FrmConsultation : Form
     {
-        SqlConnection cn = new SqlConnection();
         SqlCommand comP = new SqlCommand();
         SqlCommand comC = new SqlCommand();
 
@@ -33,16 +32,11 @@ namespace Mode_Deconnecte
 
         private void FrmConsultation_Load(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["CabinetMedecinConnectionString"].ConnectionString;
 
-            cn.ConnectionString = cs;
-
-            // cn.ConnectionString = @"data source=.\sqlexpress2008;initial catalog=cabinetMedecin;integrated security=true";
-
-            cn.Open();
+            db.OuvrirConnection();
 
             //gestion des patients
-            comP.Connection = cn;
+            comP.Connection = db.cn;
             comP.CommandText = "select * from patient";
             daP = new SqlDataAdapter(comP);
 
@@ -55,7 +49,7 @@ namespace Mode_Deconnecte
             listBox1.DataSource = bsP;
 
             //gestion des consultations
-            comC.Connection = cn;
+            comC.Connection = db.cn;
             comC.CommandText = "select * from consultation";
             daC = new SqlDataAdapter(comC);
             cb = new SqlCommandBuilder(daC);
@@ -75,8 +69,7 @@ namespace Mode_Deconnecte
             listBox2.ValueMember = "id";
             listBox2.DataSource = bsC;
 
-            txtDC.DataBindings.Add("Text", bsC, "dateConsultation") ;
-        
+            txtDC.DataBindings.Add("Text", bsC, "dateConsultation");
             txtObservation.DataBindings.Add("Text", bsC, "observation");
 
 
@@ -94,18 +87,19 @@ namespace Mode_Deconnecte
         {
             bsC.AddNew();
             txtDC.Text = DateTime.Now.ToString();
-      
+
         }
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-                    bsC.EndEdit();
+            bsC.EndEdit();
             daC.Update(ds.Tables["Consultation"]);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 dtpConsultation.Value = Convert.ToDateTime(txtDC.Text);
             }
             catch (Exception ex)

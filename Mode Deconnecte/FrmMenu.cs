@@ -22,6 +22,14 @@ namespace Mode_Deconnecte
         }
         private void AfficherFenetre(Form f)
         {
+
+            if (panel1.Controls.Count!=0)
+            {
+                Form oldf = (Form)panel1.Controls[0];
+                oldf.Close();
+
+            }
+
             panel1.Controls.Clear();
             f.TopLevel = false;
             f.AutoScroll = true;
@@ -56,6 +64,11 @@ namespace Mode_Deconnecte
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             AfficherFenetre(new FrmConsultation());
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            AfficherFenetre(new FrmConsultation2());
         }
     }
 }
