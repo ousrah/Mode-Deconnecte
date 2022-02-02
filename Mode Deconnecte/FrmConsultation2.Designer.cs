@@ -46,23 +46,23 @@ namespace Mode_Deconnecte
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(90, 55);
+            this.comboBox1.Location = new System.Drawing.Point(12, 26);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(401, 24);
+            this.comboBox1.Size = new System.Drawing.Size(257, 24);
             this.comboBox1.TabIndex = 0;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(90, 94);
+            this.listBox1.Location = new System.Drawing.Point(12, 65);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(401, 356);
+            this.listBox1.Size = new System.Drawing.Size(257, 356);
             this.listBox1.TabIndex = 1;
             // 
             // txtObservation
             // 
-            this.txtObservation.Location = new System.Drawing.Point(521, 168);
+            this.txtObservation.Location = new System.Drawing.Point(275, 139);
             this.txtObservation.Multiline = true;
             this.txtObservation.Name = "txtObservation";
             this.txtObservation.Size = new System.Drawing.Size(470, 206);
@@ -70,7 +70,7 @@ namespace Mode_Deconnecte
             // 
             // txtDC
             // 
-            this.txtDC.Location = new System.Drawing.Point(596, 238);
+            this.txtDC.Location = new System.Drawing.Point(350, 209);
             this.txtDC.Name = "txtDC";
             this.txtDC.Size = new System.Drawing.Size(267, 22);
             this.txtDC.TabIndex = 33;
@@ -78,7 +78,7 @@ namespace Mode_Deconnecte
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(775, 438);
+            this.btnAnnuler.Location = new System.Drawing.Point(529, 409);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(122, 39);
             this.btnAnnuler.TabIndex = 32;
@@ -87,7 +87,7 @@ namespace Mode_Deconnecte
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(636, 438);
+            this.btnValider.Location = new System.Drawing.Point(390, 409);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(122, 39);
             this.btnValider.TabIndex = 31;
@@ -97,7 +97,7 @@ namespace Mode_Deconnecte
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(845, 391);
+            this.btnSupprimer.Location = new System.Drawing.Point(599, 362);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(122, 39);
             this.btnSupprimer.TabIndex = 30;
@@ -107,7 +107,7 @@ namespace Mode_Deconnecte
             // 
             // btnModifier
             // 
-            this.btnModifier.Location = new System.Drawing.Point(699, 391);
+            this.btnModifier.Location = new System.Drawing.Point(453, 362);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(122, 39);
             this.btnModifier.TabIndex = 29;
@@ -116,7 +116,7 @@ namespace Mode_Deconnecte
             // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(560, 391);
+            this.btnAjouter.Location = new System.Drawing.Point(314, 362);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(122, 39);
             this.btnAjouter.TabIndex = 28;
@@ -127,7 +127,7 @@ namespace Mode_Deconnecte
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(526, 136);
+            this.label4.Location = new System.Drawing.Point(280, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 17);
             this.label4.TabIndex = 27;
@@ -136,7 +136,7 @@ namespace Mode_Deconnecte
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(526, 67);
+            this.label3.Location = new System.Drawing.Point(280, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(165, 17);
             this.label3.TabIndex = 26;
@@ -145,7 +145,7 @@ namespace Mode_Deconnecte
             // dtpConsultation
             // 
             this.dtpConsultation.CustomFormat = "yyyy MM dd";
-            this.dtpConsultation.Location = new System.Drawing.Point(521, 94);
+            this.dtpConsultation.Location = new System.Drawing.Point(275, 65);
             this.dtpConsultation.Name = "dtpConsultation";
             this.dtpConsultation.Size = new System.Drawing.Size(405, 22);
             this.dtpConsultation.TabIndex = 24;
@@ -155,7 +155,7 @@ namespace Mode_Deconnecte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 501);
+            this.ClientSize = new System.Drawing.Size(1382, 581);
             this.Controls.Add(this.txtObservation);
             this.Controls.Add(this.txtDC);
             this.Controls.Add(this.btnAnnuler);

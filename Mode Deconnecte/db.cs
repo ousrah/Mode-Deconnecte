@@ -34,11 +34,12 @@ namespace Mode_Deconnecte
 
         }
 
-        public static BindingSource RemplirListe(string table)
+        public static void CreerTable(string table)
         {
-            return RemplirListe("select * from " + table, table);
+            CreerTable("select * from " + table, table);
         }
-        public static BindingSource RemplirListe(string req, string table)
+
+            public static void CreerTable(string req,string table)
         {
             OuvrirConnection();
 
@@ -50,12 +51,20 @@ namespace Mode_Deconnecte
             {
                 ds.EnforceConstraints = false;
                 ds.Tables[table].Clear();
-
             }
 
             da.Fill(ds, table);
             ds.EnforceConstraints = true;
+        }
 
+        public static BindingSource RemplirListe(string table)
+        {
+            return RemplirListe("select * from " + table, table);
+        }
+        public static BindingSource RemplirListe(string req, string table)
+        {
+
+            CreerTable(req, table);
 
             BindingSource bs = new BindingSource();
             bs.DataSource = ds;
@@ -63,6 +72,28 @@ namespace Mode_Deconnecte
 
             return bs;
         }
+
+
+        public static void CreerRelation(string tablePK, string tableFK, string pk, string fk )
+        {
+            string nomRelation = "fk_" + tableFK + "_" + tablePK;
+
+            if (!ds.Relations.Contains(nomRelation))
+            {
+                DataColumn colPK = ds.Tables[tablePK].Columns[pk];
+                DataColumn colFK = ds.Tables[tableFK].Columns[fk];
+                DataRelation rel = new DataRelation(nomRelation, colPK, colFK);
+
+                ds.Relations.Add(rel);
+
+               //      rel.ChildKeyConstraint.DeleteRule = Rule.Cascade;
+               //     rel.ChildKeyConstraint.UpdateRule = Rule.Cascade;
+
+            }
+
+
+        }
+
 
         public static BindingSource RemplirListeRelation(string table, BindingSource bs, string pk, string fk)
         {
@@ -72,38 +103,15 @@ namespace Mode_Deconnecte
 
         public static BindingSource RemplirListeRelation(string req, string table, BindingSource bs, string pk, string fk)
         {
-            OuvrirConnection();
+            CreerTable(req, table);
 
-            com.Connection = cn;
-            com.CommandText = req;
-            da.SelectCommand = com;
-
-
-            if (ds.Tables.Contains(table))
-            {
-                ds.EnforceConstraints = false;
-                ds.Tables[table].Clear();
-            }
-
-            da.Fill(ds, table);
-            ds.EnforceConstraints = true;
-
-            string nomRelation = "fk_" + table + "_" + bs.DataMember;
-
-            if (!ds.Relations.Contains(nomRelation))
-            {
-                DataColumn colPK = ds.Tables[bs.DataMember].Columns[pk];
-                DataColumn colFK = ds.Tables[table].Columns[fk];
-                DataRelation rel = new DataRelation(nomRelation, colPK, colFK);
-                ds.Relations.Add(rel);
-            }
+            CreerRelation(bs.DataMember, table, pk, fk);
 
 
 
-
-            BindingSource newbs = new BindingSource();
+               BindingSource newbs = new BindingSource();
             newbs.DataSource = bs;
-            newbs.DataMember = nomRelation;
+            newbs.DataMember = "fk_"+table+"_"+ bs.DataMember;
 
             return newbs;
         }
@@ -113,10 +121,9 @@ namespace Mode_Deconnecte
         public static void MiseAjour(string table)
         {
             OuvrirConnection();
-            com.CommandText = "select * from " + table;
-            com.Connection = cn;
-            da.SelectCommand = com;
-            cb.DataAdapter = da;
+            com = new SqlCommand("select * from " + table,cn);
+            da = new SqlDataAdapter(com);
+            cb = new SqlCommandBuilder(da);
             da.Update(ds.Tables[table]);
 
 

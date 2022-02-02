@@ -53,6 +53,17 @@ namespace Mode_Deconnecte
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
+            db.CreerTable("medecin");
+            db.CreerTable("patient");
+            db.CreerTable("consultation");
+            db.CreerTable("medicament");
+            db.CreerTable("ordonance");
+            db.CreerRelation("medecin", "consultation", "id", "idMedecin");
+            db.CreerRelation("patient", "consultation", "id", "idPatient");
+            db.CreerRelation("medicament", "ordonance", "id", "idMedicament");
+            db.CreerRelation("consultation", "ordonance", "id", "idConsultation");
+
+
 
         }
 
